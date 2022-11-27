@@ -2,10 +2,7 @@ package pl.sda.hibernate.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -24,7 +21,12 @@ public class Ocena {
     // INSERT INTO OCENA VALUES (now())
     private LocalDateTime dataCzasDodania;
 
+    @Enumerated(value = EnumType.STRING)
+    private Przedmiot przedmiot;
+
     // RELACJA
     @ManyToOne
+//    @ToString.Exclude (wystarczy z jednej strony)
+    @EqualsAndHashCode.Exclude // musi byc po obydwu stronach
     private Student student; // kolumna student_id
 }
